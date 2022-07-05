@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<section class="content">
+<div class="main-header">
+  <img class="logo" src="{% static 'img/techimg.png' %}"/> 
+  <h1>Edit</h1>
+</div>
+<section class="post_form">
+    <form action="/edit/{{post.id}}/" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Name" class="name" value="{{post.name}}" required />
+        <textarea name="body" placeholder="What's Happening" required>{{post.body}}</textarea>
+        <label for="{{post.name}}"></label>
+
+        {% if post.image.url %}
+        <img
+          class="post-border"
+          src="{{ post.image.url}}"
+          style="width: 100%"
+        />
+        {% endif %}
+        <input class="form-contorl form-contorl -sm" name="image" type="file"/>
+        
+      
+        <div class="b1">
+            <button class="cancel-button" href="{% url 'index' %}">Cancel
+            </button>
+            <button class="update-button" href="{% url 'index' %}">Update
+            </button>
+        </div>
+    </form>
+</section>
+{% endblock %}

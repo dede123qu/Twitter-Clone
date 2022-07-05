@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<section class="content">
+  <div class="main-header">
+    <img class="logo" src="{% static 'img/techimg.png' %}" />
+    <h1>Home</h1>
+  </div>
+  <section class="post_form">
+    <!-- <form action="" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input type="text" name="name" placeholder="Name" class="name" required />
+      <textarea name="body" placeholder="What's Happening" required></textarea>
+      <input class="form-contorl form-contorl -sm" name="image" type="file" />
+      <input type="submit" value="Tweet" class="Tweet" />
+    </form> -->
+
+    <form action="" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input type="text" name="name" placeholder="Name" class="name" required />
+      <textarea name="body" placeholder="What's Happening" required></textarea>
+      <input  name="image" type="file" />
+      <input type="submit" value="Tweet" class="Tweet"/>
+    </form>
+  </section>
+  <section class="posts">
+
+    <ul>
+      {% for post in posts %}
+      <li>
+        <img class="menu_icon js-menu-icon" src="{% static 'img/option.png' %}" />
+        <div class="menu">
+          <a href="/edit/{{ post.id }}">Edit</a>
+          <a href="/delete/{{ post.id }}">Delete</a>
+        </div>
+        <div class="logo">
+          <img src="static/img/balloons.png" alt="">
+        </div>
+        <div class="name_body">
+          <div class="name"> {{ post.name }} </div>
+          <div class="datetime"> {{ post.created_at }}</div>
+         
+          <p>{{ post.body }}</p>
+          <!-- {% if post.image.url %}
+          <img class="post-border" scr="{{ post.image.url }}" style="width: 370px; height:370px;">
+          {% endif %} -->
+          {% if post.image.url %}
+          <img
+            class="post-border"
+            src="{{ post.image.url}}"
+            style="width: 100%"
+          />
+          {% endif %}
+          <div class="like js-like" data-tweet-id="395">
+            <a href="/like/{{post.id}}"><img src="/static/img/icon-heart-gray.svg"></a>
+            {% if post.like != 0 %}
+            <p>{{post.like}}</p>
+            {% endif %}
+          </div>
+
+        </div>
+      </li>
+
+    {% endfor %}
+    </ul>
+    
+  </section>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+  <script src="{% static 'js/posts.js' %}"></script>
+</section>
+
+
+{% endblock %}
