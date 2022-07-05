@@ -136,11 +136,12 @@ img {
     margin-left: 10%;
 } */
 
-.like.js-like {
-    display: inline-flex;
-    flex-direction: row-reverse;
-    justify-content: center;
-}
+
+    .like.js-like {
+        display: inline-flex;
+        /* flex-direction: row-reverse; */
+        /* justify-content: center; */
+    }
 
 input.Update {
     width: 16%;
@@ -148,7 +149,10 @@ input.Update {
     border: none;
     margin-left: 20%;
 }
-
+a {
+    width: 66%;
+    display: contents;
+}
 .b1 {
     display: flow-root;
     width: 100%;
